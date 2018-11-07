@@ -3,7 +3,6 @@ module SharedMemory
   ( openSharedMemory
   ) where
 
-import           Data.Monoid
 import           Foreign.C.Types (CSize)
 import qualified Foreign.Concurrent as FC
 import           Foreign.ForeignPtr

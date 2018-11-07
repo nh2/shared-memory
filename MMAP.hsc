@@ -6,7 +6,6 @@ module MMAP where
 import           Control.Exception
 import           Control.Monad
 import           Data.Bits ((.|.))
-import           Data.Monoid
 import           Data.Typeable
 import           Foreign.C.Types
 import           Foreign.Ptr
@@ -111,7 +110,9 @@ protNone = ProtOption #const PROT_NONE
 
 instance Monoid ProtOption where
   mempty = protNone
-  mappend (ProtOption a) (ProtOption b) = ProtOption (a .|. b)
+
+instance Semigroup ProtOption where
+  (<>) (ProtOption a) (ProtOption b) = ProtOption (a .|. b)
 
 
 -- | Determines whether updates to the mapping are visible
@@ -218,7 +219,9 @@ mapUninitialized = MmapOptionalFlag #const MAP_UNINITIALIZED
 
 instance Monoid MmapOptionalFlag where
   mempty = MmapOptionalFlag 0
-  mappend (MmapOptionalFlag a) (MmapOptionalFlag b) = MmapOptionalFlag (a .|. b)
+
+instance Semigroup MmapOptionalFlag where
+  (<>) (MmapOptionalFlag a) (MmapOptionalFlag b) = MmapOptionalFlag (a .|. b)
 
 
 -- | An `MmapSharedFlag` with one or more `MmapOptionalFlag`s.
