@@ -10,7 +10,8 @@ bug-reports:         https://github.com/nh2/shared-memory/issues
 synopsis:            POSIX shared memory
 description:
   POSIX shared memory library.
-
+extra-source-files:
+  Changelog.md
 
 library
   exposed-modules:
