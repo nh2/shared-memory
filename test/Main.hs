@@ -25,7 +25,7 @@ data Person = Person
 
 main :: IO ()
 main = do
-  let shmemPath = "asdf"
+  let shmemPath = "/asdf"
   let size = 200
 
   (fptr, fd) <- openSharedMemory shmemPath
