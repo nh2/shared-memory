@@ -18,6 +18,10 @@ import           MMAP
 -- Creates a shared memory file using @shm_open@ at @shmemPath@ of @size@ bytes,
 -- returning the created `Fd` and `ForeignPtr` pointing to the @mmap@'ed memory.
 --
+-- Note that there are portability considerations, that put constraints on what
+-- you can pass to this function. For example, @shmemPath@ is recommended to
+-- start with @/@, and BSD as of writing requires that. Consult @man shm_open@.
+--
 -- The `Fd` can be used to resize the shared memory region.
 --
 -- When the returned `ForeignPtr` is garbage collected, the memory is @munmap@'ed,
